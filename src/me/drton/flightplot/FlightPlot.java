@@ -1233,6 +1233,24 @@ public class FlightPlot {
                     }
                 }
             }
+
+            /////EXPORT PROCESS
+            try(FileWriter writer = new FileWriter("output.txt", false))
+            {
+                for(int i=0;i<dataset.getItemCount(0);i++) {
+                    writer.write(String.valueOf(dataset.getXValue(0, i)));
+                    writer.append('\t');
+                    writer.write(String.valueOf(dataset.getYValue(0, i)));
+                    writer.append('\n');
+                }
+                writer.flush();
+            }
+            catch(IOException ex){
+
+                System.out.println(ex.getMessage());
+            }
+            /////END OF EXPORT PROCESS
+
             setChartColors();
             setChartMarkers();
         }
